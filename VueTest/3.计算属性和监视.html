@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    姓:<input type="text" placeholder="firstName" v-model='firstName'> <br>
+    名:<input type="text" placeholder="lastName" v-model='lastName'> <br>
+    姓名1(单向):<input type="text" placeholder="fullName1" v-model='fullName1'> <br>
+    姓名2(单向):<input type="text" placeholder="fullName2" v-model='fullName2'> <br>
+    姓名3(双向):<input type="text" placeholder="fullName3" v-model='fullName3'> <br>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+  <script>
+    const vm = new Vue({
+      el:'#app',
+      data:{
+        firstName:'A',
+        lastName:'B',
+        fullName2:'A B'
+      },
+      computed:{//计算属性
+        fullName1(){ //计算属性中的一个方法 返回值作为计算属性的值
+          return this.firstName + ' ' + this.lastName
+        },
+        fullName3:{
+          get(){ //计算并返回当前的属性值
+            return this.firstName + ' ' + this.lastName
+          },
+          set(value){ //value就是最新的计算属性方法返回的值
+            const arr = value.split(' ')
+            this.firstName = arr[0]
+            this.lastName = arr[1]
+          }
+        }
+      },
+      watch:{ //配置监视
+        firstName:function(value){
+          this.fullName2 = value + ' ' + this.lastName
+        },
+        lastName:function(value){
+          this.fullName2 = this.firstName + ' ' + value
+        }
+      }
+    })
+    // vm.$watch('lastName',function(value){
+    //   this.fullName2 = this.firstName + '' + value
+    // })
+  </script>
+</body>
+</html>

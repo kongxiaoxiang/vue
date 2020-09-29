@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'> <!--view 模板页面-->
+    <input type="text" v-model='userName'>
+    <p>Hello,{{userName}}</p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+  <script>
+    //创建vue实例
+    const vm = new Vue({
+      el:'#app',
+      data:{ //model 模型 数据对象
+        userName:'atguigu'
+      }
+    })
+  </script>
+</body>
+</html>
