@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">  
+    <h2>1.v-for 遍历数组</h2>
+    <ul>
+      <li v-for="(p,index) in persons" :key='index'>{{index}}---{{p.name}}---{{p.age}}
+        ---<button @click='deleteP(index)'>删除</button>
+        ---<button @click="updateP(index,{name:'yyc',age:18})">更新</button>
+      </li>
+    </ul>
+    <h2>2.v-for 遍历对象</h2>
+    <ul>
+      <li v-for='(value,key) in persons[1]' :key='key'>
+        {{value}}---{{key}}
+      </li>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+  <script>
+    //vue只本身监视persons的改变，不监视数组内部的数据改变
+    //vue重写了一系列改变数组数据内部的方法(先调用原生，在更新界面)
+    const vm = new Vue({
+      el:'#app',
+      data:{
+        persons:[  
+          {name:'tom',age:12},
+          {name:'jack',age:13},
+          {name:'tony',age:14},
+          {name:'rose',age:15}
+        ]
+      },
+      methods:{
+        deleteP(index){
+          this.persons.splice(index,1)
+        },
+        updateP(index,newP){
+          this.persons.splice(index,1,newP)
+        }
+      }
+    })
+  </script>
+</body>
+</html>
