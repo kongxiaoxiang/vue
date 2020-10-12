@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>1.绑定监听</h2>
+    <button @click='test1'>test1</button>
+    <button @click="test2('i love you')">test2</button>
+    <button @click='test3'>test3</button>
+    <button @click="test4('i love you zhao li ying',$event)">test4</button>
+    <hr>
+    <h2>2.事件修饰符</h2>
+    <div style="width: 200px;height: 200px;background-color: red" @click='test5'>
+      <div style="width: 100px;height: 100px;background-color:blue" @click.stop='test6'></div>
+    </div>
+    <a href="https://wwww.baidu.com" @click.prevent='test7'>去百度</a>
+    <hr>
+    <h2>3.按键修饰符</h2>
+    <input type="text" @keyup.13='test8'>
+    <input type="text" @keyup.enter='test8'>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      methods:{
+        test1(){
+          alert('atguigu')
+        },
+        test2(msg){
+          alert(msg)
+        },
+        test3(event){
+          alert(event.target.innerHTML)
+        },
+        test4(value,event){
+          alert(value + '---' + event.target.innerHTML)
+        },
+        test5(){
+          alert('out')
+        },
+        test6(){
+          alert('inner')
+        },
+        test7(){
+          alert('i love you zhao li ying!')
+        },
+        test8(event){
+          alert(event.keyCode)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

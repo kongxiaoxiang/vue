@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <form action="/xxx" @submit.prevent='handelSubmit'>
+      用户名:<input type="text" v-model='userName'><br>
+      密码:<input type="password" v-model='psw'><br>
+      性别:<input type="radio" id='female' v-model='sex' value='female'>
+          <label for="female">女</label>
+          <input type="radio" id="male" v-model='sex' value='male'>
+          <label for="male">男</label><br>
+      爱好:<input type="checkbox" id="pingPang" v-model='likes' value='pingPang'>
+          <label for="pingPang">乒乓球</label>
+          <input type="checkbox" id="basket" v-model='likes' value='basket'>
+          <label for="basket">篮球</label>
+          <input type="checkbox" id="foot" v-model='likes' value='foot'>
+          <label for="foot">足球</label><br>
+      城市:<select v-model='cityID'>
+            <option value="">未选择</option>
+            <option :value="c.id" v-for="(c,index) in allCitys" :key='index'>
+              {{c.name}}
+            </option>
+          </select><br>
+      <div>介绍:</div>
+          <textarea rows="10" style="margin-left:40px;" v-model='desc'></textarea><br>
+          <input type="submit" value="注册">
+    </form>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        userName:'',
+        psw:'',
+        sex:'female',
+        likes:['pingPang'],
+        allCitys:[
+          {id:1,name:'bj'},
+          {id:2,name:'sh'},
+          {id:3,name:'hz'}
+        ],
+        cityID:'1',
+        desc:''
+      },
+      methods:{
+        handelSubmit(){
+          const {userName,psw,sex,likes,cityID,desc} = this
+          alert(userName + '---' + psw + '---' + sex + '---' + likes + '---' + cityID + '---' + desc) 
+        }
+      }
+    })
+  </script>
+</body>
+</html>
