@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .move1-enter-active,.move1-leave-active{
+      transition: opacity 5s;
+    }
+    .move1-enter,.move1-leave-to{
+      opacity: 0;
+    }
+    .move2-enter-active,.move2-leave-active{
+      transition: all 5s;
+    }
+    .move2-enter,.move2-leave-to{
+      opacity: 0;
+      transform: translateX(20px);
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button @click='isShow=!isShow'>toggle</button>
+    <transition name='move1'>
+      <p v-show='isShow'>atguigu</p>
+    </transition>
+    <hr>
+    <button @click='isShow=!isShow'>toggle</button>
+    <transition name='move2'>
+      <p v-show='isShow'>atguigu</p>
+    </transition>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        isShow:true
+      }
+    })
+  </script>
+</body>
+</html>

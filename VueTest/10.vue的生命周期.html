@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <button @click='destroyVm'>destroy VM</button>
+    <p v-show='isShow'>i love you yyc!</p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        isShow:true
+      },
+      //1.初始化阶段
+      beforeCreate(){
+        console.log('beforeCreate()')
+      },
+      created(){
+        console.log('created()')
+      },
+      beforeMount(){
+        console.log('beforeMount()')
+      },
+      mounted(){ //初始化显示的时候调用(1次)
+        this.timer = setInterval(() => {
+          console.log('mounted()')
+          this.isShow = !this.isShow
+        }, 1000);
+      },
+      //2.更新阶段
+      beforeUpdate(){
+        console.log('beforeUpdate()')
+      },
+      updated(){
+        console.log('updated()')
+      },
+      //3.死亡阶段
+      beforeDestroy(){ //死亡之前调用(1次)
+        console.log('beforeDestroy()')
+        clearInterval(this.timer)
+      },
+      destroyed(){
+        console.log('destroyed()')
+      },
+      methods:{
+        destroyVm(){
+          this.$destroy()
+        }
+      }
+    })
+  </script>
+</body>
+</html>
